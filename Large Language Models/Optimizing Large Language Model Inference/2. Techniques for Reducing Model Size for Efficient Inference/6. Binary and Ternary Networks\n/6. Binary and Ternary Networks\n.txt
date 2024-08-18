@@ -1,0 +1,29 @@
+# Techniques for Reducing Model Size for Efficient Inference: Binary and Ternary Networks
+
+As machine learning models become more complex, they also increase in size, making them challenging to use on devices with limited computing power such as smartphones or IoT devices. This is where techniques for reducing model size for efficient inference, such as Binary and Ternary Networks, come into play.
+
+## What are Binary and Ternary Networks?
+
+Binary and Ternary Networks are methods that reduce the size of the model, making them faster for inference. These networks replace the continuous weights in a neural network with discrete values, usually -1, 0, and 1 for ternary networks, and -1 and 1 for binary networks. 
+
+This change in weight precision significantly reduces the model's memory usage, allowing them to be used on devices with limited resources. Additionally, these networks also speed up the inference time as the multiplication operation can be replaced with a faster bitwise operation. 
+
+## How do Binary and Ternary Networks work?
+
+Binary and Ternary Networks work by quantizing the weights of the neural network. In Binary Networks, the weights are quantized to -1 or 1, usually by taking the sign of the weights. For Ternary Networks, the weights are quantized to -1, 0, or 1, by setting a threshold and assigning weights below, above, or in between the threshold to -1, 1, or 0 respectively.
+
+For instance, a neural network with weights [0.2, -0.6, 0.8, -0.1] would become [1, -1, 1, -1] if binarized, or [0, -1, 1, 0] if ternarized with a threshold of 0.5.
+
+During the forward pass, these quantized weights are used, speeding up computation. But, during the backward pass, the original continuous weights are used to compute the gradients, as the quantization function is non-differentiable, meaning gradients can't be computed using the quantized weights.
+
+To train these networks, a straight-through estimator is often used. This technique allows gradients to be backpropagated through the non-differentiable quantization function by using a surrogate gradient during the backward pass.
+
+## Addressing Doubts
+
+1. **Bitwise operations in Binary and Ternary Networks:** Bitwise operations work on the level of individual bits. They are faster than arithmetic operations because they directly manipulate the binary representation of numbers. In Binary and Ternary Networks, the multiplication operation, which is usually computationally expensive, can be replaced with a bitwise operation. For example, in a binary network, the weights are either +1 or -1. The multiplication of a weight and an input can be replaced by a bitwise operation: if the weight is +1, the input is unchanged; if the weight is -1, the bitwise NOT operation is applied to the input. This significantly speeds up the inference time.
+
+2. **Quantizing the weights of the neural network:** Quantizing the weights is a process where the continuous values of the weights are approximated by a discrete set of values. For example, in a binary network, the weights are quantized to +1 and -1; in a ternary network, the weights are quantized to -1, 0, and +1. This process reduces the model size because each weight requires less memory to store. For instance, a binary weight requires only one bit, and a ternary weight can be represented with two bits. This not only reduces the memory footprint of the model but also speeds up the inference time because fewer bits are processed.
+
+3. **Straight-through estimator:** A straight-through estimator is a technique used to allow gradients to be backpropagated through non-differentiable functions, such as the quantization function used in Binary and Ternary Networks. The idea is to use the identity function as a surrogate for the non-differentiable function during backpropagation. In other words, during the forward pass, the quantization function is applied to the weights; during the backward pass, the gradients are passed through as if the quantization function was the identity function. This allows the gradients to be backpropagated through the network, enabling the weights to be updated.
+
+In conclusion, Binary and Ternary Networks are effective techniques for reducing the model size and speeding up inference, making them ideal for use on devices with limited computational resources.

@@ -1,0 +1,29 @@
+# Quantization and Pruning in Large Language Models: Advanced Topics - Quantization Aware Training and Lottery Ticket Hypothesis in Pruning
+
+## Introduction
+
+Large language models like GPT-3 or BERT require substantial computational power and memory, making them challenging to use on devices with limited resources. Quantization and pruning are key techniques in machine learning that help mitigate this issue. 
+
+Quantization reduces the precision of the model's weights, thereby decreasing memory and computational needs. Pruning, on the other hand, eliminates less crucial weights or neurons from the model, simplifying it without significantly affecting its performance.
+
+## Advanced Topics
+
+### Quantization Aware Training (QAT)
+
+Quantization Aware Training is an advanced aspect of quantization. It is a method that simulates the effects of quantization during training. This process helps the model adjust to lower precision weights, minimizing performance loss when the model is quantized.
+
+During QAT, a quantization step is introduced during the forward pass of the model. The weights are quantized to a lower precision, and this quantized value is used for the rest of the training. This approach helps the model learn to offset the effects of quantization, resulting in a more robust model when it is finally quantized.
+
+### Lottery Ticket Hypothesis (LTH)
+
+The Lottery Ticket Hypothesis is a concept in pruning. It proposes that a small, pruned network can perform as well as the original network if it starts with the same weights as the original network before pruning. This "winning ticket" is much smaller and efficient than the original network.
+
+The LTH involves iterative pruning and retraining. The network is first trained normally. Then, a certain percentage of the least important weights are pruned, and the remaining weights are reset to their initial values. The network is then retrained. This process is repeated until a small enough network is obtained. According to the hypothesis, this pruned network, or "winning ticket," can perform as well as the original network, but with significantly fewer resources.
+
+## Practical Application
+
+Consider a large language model like BERT. By applying QAT, we can lower the precision of the weights, reducing the model's memory and computational needs. Then, by applying the Lottery Ticket Hypothesis, we can prune the model to get a smaller, more efficient network that can perform as well as the original BERT model. This allows BERT to be used on devices with limited resources, expanding the possibilities for on-device natural language processing.
+
+## Conclusion
+
+Quantization Aware Training and the Lottery Ticket Hypothesis are advanced techniques that can significantly reduce the computational and memory needs of large language models. By understanding and applying these techniques, we can make these powerful models more accessible and usable on a wider range of devices.

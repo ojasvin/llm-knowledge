@@ -1,0 +1,33 @@
+# Techniques for Reducing Model Size for Efficient Inference: Low-Rank Factorization
+
+As machine learning models grow in complexity, they also increase in size, which can cause storage, computational, and deployment challenges, especially in resource-limited settings like mobile devices. Hence, we need methods to reduce model size without greatly affecting their performance. One such technique is Low-Rank Factorization.
+
+## What is Low-Rank Factorization?
+
+Low-Rank Factorization is a method that reduces the model size by replacing the original weight matrix of the model with the product of two low-rank matrices. This not only cuts down storage needs but also the computational complexity of the model, making it more efficient for inference.
+
+The idea of Low-Rank Factorization is rooted in the mathematical principle that a matrix can be approximated by the product of two lower rank matrices. In machine learning models, the weight matrices, which can be large and high rank, are approximated using two smaller, low-rank matrices. This results in a smaller, more compact model that retains much of the original model's predictive power.
+
+## How does Low-Rank Factorization work?
+
+Low-Rank Factorization involves breaking down the original weight matrix into two low-rank matrices. This is usually done using methods like Singular Value Decomposition (SVD) or Principal Component Analysis (PCA).
+
+Suppose we have a weight matrix W of size m x n. The aim is to approximate this matrix using two smaller matrices U and V, where U is of size m x k and V is of size k x n, and k is much smaller than m and n.
+
+W ≈ U * V
+
+The matrices U and V are obtained by performing SVD or PCA on the original weight matrix W. The top-k singular values and corresponding singular vectors are chosen to form the low-rank matrices U and V.
+
+This approximation greatly reduces the model size as the number of parameters drops from m*n to m*k + k*n. Also, during inference, the computational complexity is reduced as the number of operations changes from O(m*n) to O(m*k + k*n).
+
+For instance, consider a weight matrix of size 1000 x 1000 (1,000,000 parameters). If we can approximate this matrix using two matrices of size 1000 x 10 and 10 x 1000 (20,000 parameters), we have effectively reduced the model size by a factor of 50.
+
+It's crucial to remember that the choice of rank k is a balance between the model size and its performance. A lower rank results in a smaller model but may cause a loss of accuracy. Therefore, choosing an appropriate rank is vital for the success of Low-Rank Factorization.
+
+## Addressing Doubts
+
+1. **Mathematical Principle:** The principle that a matrix can be approximated by the product of two lower rank matrices is rooted in the concept of matrix factorization in linear algebra. Any matrix can be viewed as a linear transformation, and any linear transformation can be decomposed into a sequence of simpler transformations, which can be represented by lower rank matrices.
+
+2. **SVD and PCA:** Singular Value Decomposition (SVD) and Principal Component Analysis (PCA) are two techniques used to perform low-rank factorization. SVD decomposes a matrix into three matrices: U, Σ, and V^T, where U and V are orthogonal matrices and Σ is a diagonal matrix. PCA is a statistical procedure that uses orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.
+
+3. **Choice of Rank:** The choice of rank k in low-rank factorization is indeed a balance between the model size and its performance. A lower rank will result in a smaller model size, but may also result in a loss of information and hence lower performance. Conversely, a higher rank will retain more information and potentially result in higher performance, but at the cost of a larger model size. The choice of rank therefore depends on the specific requirements of the application. In practice, the rank is often chosen by trial and error, starting with a low rank and gradually increasing it until the desired balance between model size and performance is achieved.

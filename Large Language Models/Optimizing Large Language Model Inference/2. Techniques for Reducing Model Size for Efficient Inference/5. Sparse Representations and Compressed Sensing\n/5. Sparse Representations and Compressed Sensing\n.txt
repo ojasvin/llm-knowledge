@@ -1,0 +1,31 @@
+# Techniques for Reducing Model Size for Efficient Inference: Sparse Representations and Compressed Sensing
+
+As machine learning models grow in size and complexity, they demand more computational power and storage. This can pose challenges for devices with limited resources, such as smartphones or IoT devices. Moreover, larger models can be slower to use, which is not ideal for applications that require quick responses. Therefore, techniques that can reduce model size and speed up the process are crucial. Two such techniques are Sparse Representations and Compressed Sensing.
+
+## Sparse Representations
+
+Sparse Representations is a method of organizing data where most of the elements are zero. This approach is beneficial in machine learning models as it reduces the number of parameters the model needs to learn, thereby making the model smaller.
+
+In Sparse Representations, data is organized in a high-dimensional space where most of the elements are zero. A high-dimensional space refers to a mathematical space with more than three dimensions. In this context, each dimension corresponds to a feature of the data. However, most of these features (or dimensions) are zero, meaning they do not contribute to the representation of the data. This is why it's called "sparse". 
+
+For instance, in a neural network, instead of having every neuron connected to every other neuron in the next layer (dense representation), we could have each neuron connected to only a few neurons in the next layer (sparse representation). This reduces the number of parameters (weights) that the model needs to learn, which makes the model smaller.
+
+## Compressed Sensing
+
+Compressed Sensing is a technique for efficiently capturing and rebuilding a signal, by finding solutions to underdetermined linear systems. This is based on the idea that a signal with a sparse representation can be recovered from far fewer samples or measurements than traditional methods require.
+
+In mathematics, a system of equations is said to be "underdetermined" if there are fewer equations than unknowns. This means that there are multiple solutions to the system, and additional information is needed to find a unique solution. Compressed sensing leverages this concept to reconstruct a signal from a small number of measurements. 
+
+The process of Compressed Sensing involves three main steps: 
+
+1. **Signal Acquisition:** This is where the signal is sampled. Instead of sampling at the Nyquist rate, which is the standard in traditional signal processing, compressed sensing samples at a much lower rate.
+
+2. **Sparse Representation:** The sampled signal is then represented in a sparse or compressible basis. This is usually done by transforming the signal into a domain where it has a sparse representation.
+
+3. **Signal Reconstruction:** The original signal is then rebuilt from the sparse representation using various algorithms such as Basis Pursuit, Orthogonal Matching Pursuit, etc.
+
+Basis Pursuit and Orthogonal Matching Pursuit are two algorithms used in signal reconstruction. Basis Pursuit solves an optimization problem to find the sparsest solution to an underdetermined system of linear equations. It does this by minimizing the L1 norm (a measure of sparsity) of the solution. 
+
+Orthogonal Matching Pursuit, on the other hand, is a greedy algorithm that iteratively selects the dictionary element that best matches the current residual (the difference between the original signal and the current reconstruction), and updates the reconstruction to include this element.
+
+In conclusion, Sparse Representations and Compressed Sensing are powerful techniques for making models smaller and faster, which is very important in today's world of large and complex machine learning models.

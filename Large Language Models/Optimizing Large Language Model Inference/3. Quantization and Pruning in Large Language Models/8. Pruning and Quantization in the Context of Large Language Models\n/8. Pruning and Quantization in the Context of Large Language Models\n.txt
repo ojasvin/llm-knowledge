@@ -1,0 +1,29 @@
+# 8. Pruning and Quantization in the Context of Large Language Models
+
+## Introduction
+
+As the size and complexity of large language models increase, so does the demand for computational power and time to train and use them. This makes it challenging to use these models on devices with limited resources, such as mobile phones. To manage this growing complexity, techniques like pruning and quantization are employed. These methods help to shrink the models without significantly affecting their performance, making them smaller, more efficient, and easier to use.
+
+## Pruning and Quantization: What and Why
+
+Pruning is akin to trimming a tree - it removes unnecessary parts of the neural network, such as weights or neurons, that don't contribute much to the model's output. This makes the model smaller and faster, with little loss in accuracy. Pruning is especially useful in large language models which often have many unnecessary parameters.
+
+On the other hand, quantization is like using a coarser measuring scale. Instead of using precise 32-bit floating-point numbers, we might use simpler 8-bit integers. This greatly reduces the memory and computational needs of the model, again with little loss in accuracy. Quantization is particularly useful when using models on devices with limited computational power.
+
+## Pruning and Quantization: How
+
+Pruning and quantization reduce the size and complexity of large language models in different ways. Pruning is a two-step process: first, train the model, then remove the least important weights. The importance of a weight can be determined in various ways, such as by its size or its contribution to the model's output. Once the least important weights are identified, they are set to zero, effectively removing them from the model. This results in a smaller, faster model that performs similarly to the original model.
+
+Quantization, on the other hand, reduces the precision of the weights in the model. This can be done in various ways, such as by rounding the weights to the nearest integer or by grouping the weights and replacing each weight with the average of its group. The result is a model that uses less memory and computational power, but still performs similarly to the original model.
+
+## Practical Example
+
+Consider a large language model like GPT-3, which has 175 billion parameters. By applying pruning, we might be able to remove 90% of the weights, resulting in a model with only 17.5 billion parameters. By further applying quantization, we might be able to reduce the size of each weight from 32 bits to 8 bits, resulting in a model that is 4 times smaller. Thus, with pruning and quantization, we can significantly reduce the size and complexity of large language models, making them more efficient and easier to use.
+
+## Addressing Doubts
+
+1. Pruning in the context of neural networks involves removing weights or neurons that contribute the least to the model's output. The "unnecessary" parts are typically determined based on their magnitude. Weights with smaller magnitudes are considered less important and are pruned first. This is based on the assumption that smaller weights have less impact on the output. However, this is not always the case and other more sophisticated methods of pruning also exist, such as Lottery Ticket Hypothesis, which identifies subnetworks within the larger network that can be trained to achieve similar performance.
+
+2. Quantization is the process of reducing the precision of the weights in a neural network. By using 8-bit integers instead of 32-bit floating-point numbers, we can store four times as many weights in the same amount of memory. This not only reduces memory usage but also speeds up computation, as operations with 8-bit integers are faster than with 32-bit floating-point numbers.
+
+3. Pruning and quantization can provide several practical benefits. By reducing the size and complexity of a model, we can train it faster, use less memory, and even deploy it on devices with limited resources like mobile phones or embedded devices. For example, consider a large language model like GPT-3. Without pruning and quantization, it might require a high-end server with a large amount of memory and computational power to run. However, after pruning and quantization, it might be possible to run the same model on a standard laptop or even a smartphone. This makes the model more accessible and can enable a wider range of applications.

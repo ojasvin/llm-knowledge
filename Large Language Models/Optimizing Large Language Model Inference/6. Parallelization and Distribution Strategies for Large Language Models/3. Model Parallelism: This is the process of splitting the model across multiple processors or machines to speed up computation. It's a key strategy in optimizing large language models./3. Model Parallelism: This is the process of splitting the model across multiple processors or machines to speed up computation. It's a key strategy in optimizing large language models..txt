@@ -1,0 +1,23 @@
+# Parallelization and Distribution Strategies for Large Language Models: Model Parallelism
+
+Model Parallelism is a crucial strategy employed to optimize the training of large language models. These models, characterized by their billions of parameters, are too large to fit into the memory of a single machine. To overcome this limitation, Model Parallelism is used to split the model across multiple processors or machines, thereby speeding up computation and making the process more efficient.
+
+## Understanding Model Parallelism
+
+Model Parallelism can be likened to a team working together to complete a project faster. In this scenario, the project is the large language model, and the team members are the processors or machines. The model is divided into smaller parts, with each part stored in a different machine. This strategy overcomes the memory limitation of a single machine and allows for the simultaneous computation of different parts of the model, thereby improving the efficiency of model training.
+
+Another metaphor that can help understand Model Parallelism is a relay race. Each runner in the race represents a processor, and the race itself represents the model computation. Each runner runs a part of the race simultaneously, leading to a faster completion of the race. Similarly, in Model Parallelism, each machine works on a different part of the model at the same time, leading to faster and more efficient model training.
+
+## Implementing Model Parallelism
+
+The implementation of Model Parallelism involves breaking down the model into smaller parts, similar to dividing a pizza into slices. Each slice, representing a part of the model, is then assigned to a different processor or machine for computation. The key to effective Model Parallelism is to divide the work evenly among the processors or machines to ensure simultaneous completion, thereby minimizing idle time and maximizing efficiency.
+
+Consider a deep neural network as a tall building with several floors, where each floor represents a layer of the network. In Model Parallelism, each floor is computed by a different processor, speeding up the overall computation process.
+
+## Addressing Doubts
+
+1. The metaphors used in explaining Model Parallelism serve to illustrate the concept of dividing a task among multiple entities to complete it faster. In a relay race or a team project, different parts are assigned to different members, similar to how different parts of the model are assigned to different processors in Model Parallelism.
+
+2. The division of the model across processors or machines is typically done in a way that each processor gets an equal amount of computation to perform. This is achieved by splitting the layers of the neural network across different processors. For instance, if there are 10 layers and 2 GPUs, GPU 1 might take layers 1-5 and GPU 2 might take layers 6-10. The goal is to ensure that each GPU finishes its computation at roughly the same time to avoid idle time. This is not always perfectly achievable due to the different computational complexities of different layers, but strategies like pipelining can help to mitigate this issue.
+
+3. Large language models are models that have a large number of parameters. These models are large because they are designed to capture the complexity of human language, which requires a lot of parameters. Training these models on a single machine is difficult because the memory of a single machine may not be sufficient to store the entire model and the computations involved in training it. Model Parallelism is a strategy to overcome this limitation by splitting the model across multiple machines. For example, GPT-3, a large language model developed by OpenAI, has 175 billion parameters and requires Model Parallelism for training.

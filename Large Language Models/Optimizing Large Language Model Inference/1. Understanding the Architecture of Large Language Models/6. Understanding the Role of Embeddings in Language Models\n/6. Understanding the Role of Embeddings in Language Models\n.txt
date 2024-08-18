@@ -1,0 +1,31 @@
+# Understanding the Architecture of Large Language Models: The Role of Embeddings
+
+Language models, particularly large ones, deal with a vast amount of text data. To make this data useful for computational purposes, we need to convert it into a format that computers can understand - numbers. This is where embeddings come into play. 
+
+## What are Embeddings?
+
+Embeddings are a crucial component of language models that convert words, sentences, or even entire documents into numerical vectors. These vectors encapsulate the meaning of the words or sentences they represent. For instance, words with similar meanings have vectors that are close together. This proximity helps the language model comprehend the relationships between words and generate appropriate responses.
+
+In large language models, embeddings play a pivotal role in managing the extensive vocabulary. Without embeddings, we would resort to one-hot encoding, which results in very large vectors and slows down the learning process. Embeddings address this issue by representing words in a smaller, more manageable space, thereby accelerating learning.
+
+## How do Embeddings Work?
+
+Embeddings map each word to a unique vector. Initially, these vectors are random. However, as the language model learns from text, it adjusts these vectors so that words used in similar contexts have similar vectors.
+
+There are several methods for creating embeddings. Word2Vec, for instance, uses a simple neural network to learn these vectors. It comes in two versions: CBOW (Continuous Bag of Words), which predicts a word from its context, and Skip-Gram, which does the reverse.
+
+Another method is GloVe (Global Vectors for Word Representation), which creates embeddings by breaking down the word co-occurrence matrix. This matrix is a large table where the rows represent the words in the corpus, the columns represent the context, and each cell represents how often a word appears in a particular context.
+
+Large language models like GPT-3 or BERT use a special type of embeddings known as contextual embeddings. These are calculated based on the surrounding words, allowing the models to understand that the same word can mean different things in different contexts.
+
+For example, the word "bank" in "I went to the bank to withdraw money" and "He sat on the bank of the river" would have the same vector in traditional embeddings. But in contextual embeddings, it would have two different vectors, reflecting the different meanings. This is why large language models can generate high-quality text.
+
+## Addressing Common Doubts
+
+1. **Understanding Embeddings:** Embeddings in language models are a way to represent words in a numerical form that the model can understand and process. Imagine you have a vocabulary of words, each word can be represented as a unique vector in a high-dimensional space. This vector is not random, but learned during the training process. The model adjusts these vectors so that words with similar meanings are closer together in this space, and words with different meanings are further apart.
+
+2. **Understanding Word2Vec and GloVe:** Word2Vec and GloVe are two popular methods for creating word embeddings. Word2Vec uses a neural network to learn word associations from a large corpus of text. It does this by predicting a word given its context (CBOW) or predicting the context given a word (Skip-Gram). GloVe, on the other hand, creates a word co-occurrence matrix from the corpus and then factorizes this matrix to get the word vectors.
+
+3. **Understanding Contextual Embeddings:** Contextual embeddings take the concept of word embeddings a step further by considering the context in which a word appears. Traditional word embeddings assign the same vector to a word regardless of its context, which can be a problem for words with multiple meanings. Contextual embeddings solve this problem by assigning different vectors to a word based on its context. This allows the model to understand the different meanings of the same word in different contexts.
+
+In conclusion, embeddings play a crucial role in the architecture of large language models. They not only help in managing the vast vocabulary but also aid in understanding the context and meaning of words, thereby enabling the generation of high-quality text.

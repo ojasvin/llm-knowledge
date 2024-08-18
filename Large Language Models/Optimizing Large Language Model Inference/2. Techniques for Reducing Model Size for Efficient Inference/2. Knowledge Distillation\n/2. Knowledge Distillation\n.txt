@@ -1,0 +1,43 @@
+# Techniques for Reducing Model Size for Efficient Inference: Knowledge Distillation
+
+## Introduction
+
+In the realm of deep learning, the size and complexity of models often pose a significant challenge. While these models are highly accurate, they demand substantial computational power and memory, making them unsuitable for devices with limited resources. Moreover, they consume a lot of energy. To address these issues without compromising the performance of these models, a technique known as Knowledge Distillation is employed.
+
+## What is Knowledge Distillation?
+
+Knowledge Distillation is a method that reduces the size of deep learning models while maintaining their accuracy. It achieves this by transferring the 'knowledge' from a large model, referred to as the teacher, to a smaller one, known as the student. The student model is trained to imitate the behavior of the teacher model, thus learning to make similar predictions. This allows the student model to perform as well as the teacher model but with much less computational demand, making it suitable for devices with limited resources.
+
+## How does Knowledge Distillation work?
+
+Knowledge Distillation involves training a smaller student model to mimic the larger teacher model's output. The teacher model's output holds more than just the final prediction; it also includes the model's confidence in its predictions, represented by the probabilities it assigns to each possible output class. The student model is trained to match these probabilities, enabling it to make similar predictions to the teacher model.
+
+The Knowledge Distillation process involves four key steps:
+
+1. **Train the Teacher Model**: A large model is trained on the task. This model's predictions serve as the target for the student model.
+
+2. **Generate Soft Targets**: The teacher model generates soft targets for the training data. These soft targets are the probabilities assigned by the teacher model to each possible output class, representing the model's confidence in its predictions.
+
+3. **Train the Student Model**: The student model is trained to match the teacher model's soft targets. This is done by minimizing a loss function that measures the difference between the student model's predictions and the teacher model's soft targets.
+
+4. **Fine-tune the Student Model**: After initial training, the student model is fine-tuned on the original hard targets (the actual labels) to further improve its performance.
+
+## Practical Example
+
+Consider a scenario where we have a large pre-trained Convolutional Neural Network (CNN) for image classification that classifies images into three categories: cat, dog, and bird. We want to train a smaller CNN to perform the same task but with less computational resources.
+
+First, we would pass our dataset through the teacher model and record its soft target outputs. These soft targets provide a richer understanding of the data as they contain the teacher model's confidence for each class.
+
+Next, we would train the student model on the same data but instead of using the original hard targets (i.e., the actual labels), we would use the soft targets from the teacher model. The loss function (e.g., Cross-Entropy loss) would measure the difference between the student model's predictions and the teacher model's soft targets, and the goal would be to minimize this loss.
+
+After this initial training, we would fine-tune the student model on the original hard targets. This involves continuing the training process with a smaller learning rate, allowing the student model to make more subtle adjustments and improve its performance.
+
+The end result is a smaller, more efficient model that has learned to mimic the performance of the larger model.
+
+## Clarifications
+
+1. **Soft Targets**: In the context of Knowledge Distillation, 'soft targets' refer to the output probabilities of the teacher model for each class. These probabilities are 'soft' because they provide a degree of uncertainty, unlike 'hard' targets which are definite labels. Soft targets are important because they provide more information than hard targets, allowing the student model to learn more nuanced patterns in the data.
+
+2. **Loss Function**: A loss function, in machine learning, is a measure of how well the model's predictions align with the actual values. In the context of Knowledge Distillation, the loss function measures the difference between the student model's predictions and the teacher model's soft targets. The goal during training is to minimize this loss function, thereby making the student model's predictions as close as possible to the teacher model's soft targets.
+
+3. **Fine-tuning the Student Model**: Fine-tuning refers to the process of making small adjustments to a model that has already been trained, to improve its performance. In the context of Knowledge Distillation, after the student model has been trained on the teacher model's soft targets, it is further fine-tuned on the original hard targets. This is typically done by continuing the training process with a smaller learning rate, allowing the model to make more subtle adjustments to its weights and biases.

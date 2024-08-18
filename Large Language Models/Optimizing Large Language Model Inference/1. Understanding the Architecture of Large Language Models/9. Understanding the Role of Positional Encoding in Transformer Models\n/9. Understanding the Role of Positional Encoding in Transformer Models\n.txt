@@ -1,0 +1,33 @@
+# Understanding the Architecture of Large Language Models: The Role of Positional Encoding in Transformer Models
+
+## Introduction
+
+In the realm of natural language processing (NLP), large language models like Transformers have revolutionized the way we understand and generate human-like text. These models are designed to comprehend the context and semantics of a sentence, which often depends on the order of words. However, unlike Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) models, Transformers do not inherently understand the sequence or order of elements. This is where the concept of positional encoding comes into play.
+
+## What is Positional Encoding?
+
+Positional encoding is a technique used in Transformer models to add order information to the input data. This additional information helps the model understand the sequence of words in a sentence, which is crucial for tasks like text generation, translation, sentiment analysis, and more. 
+
+Consider the sentences "The cat chased the mouse" and "The mouse chased the cat". Although they contain the same words, the order of these words changes the meaning of the sentences entirely. Positional encoding helps the model differentiate between such sentences by maintaining the sequence of the input data.
+
+## How does Positional Encoding work?
+
+Positional encoding in Transformer models works by adding a vector to each input embedding. But what is an input embedding? In the context of NLP, words or phrases from the input text are converted into vectors of real numbers, a process known as embedding. These vectors, or input embeddings, represent the words in a high-dimensional space, capturing semantic and syntactic relationships between them. 
+
+When we add a vector to each input embedding for positional encoding, we are essentially adding information about the position of each word or phrase in the input sequence to its corresponding vector representation.
+
+The positional encodings are usually created using sine and cosine functions with different frequencies. Why sine and cosine functions? These functions can generate unique and continuous values for each position in the input sequence. The use of different frequencies ensures that the positional encoding for each position is unique, allowing the model to distinguish between different positions in the input sequence. The periodic nature of these functions can also help the model capture patterns that occur at regular intervals in the input data.
+
+## Positional Encoding in Large Language Models
+
+In large language models, these positionally encoded vectors are passed through layers of self-attention and feed-forward neural networks. 
+
+Self-attention is a mechanism that allows the model to weigh the importance of each word or phrase in the input sequence when generating the output. It computes a score for each word or phrase, which is then used to weight the contribution of that word or phrase to the output.
+
+A feed-forward neural network, on the other hand, is a type of neural network that passes information in one direction, from the input layer to the output layer, without any loops. In Transformer models, the positionally encoded vectors are passed through layers of self-attention and feed-forward neural networks to generate the output.
+
+For example, in a machine translation task, the input might be a sentence in one language, and the output would be the translation of that sentence in another language. The self-attention mechanism would allow the model to focus on the most important words or phrases in the input sentence when generating the translation, while the feed-forward neural network would map the weighted input to the output space.
+
+## Conclusion
+
+In summary, positional encoding is a key concept in Transformer models, especially in large language models. It allows these models to understand and maintain the order of words in a sentence, which is vital for many natural language processing tasks. Understanding the architecture of these models and the role of positional encoding can provide valuable insights into their functioning and potential applications.
